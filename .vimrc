@@ -1,25 +1,53 @@
 "===========================================================
 " Author : trey
-" Version : 0.2
+" Version : 0.3
 " Email : 164355949@qq.com
-" Last_modify : 2015-04-28
+" Last_modify : 2015-05-08
 "
 "===========================================================
 
 
 " ======================== trey 定制 =======================
-"
+
 " 修改leader键
 let mapleader = ','
 let g:mapleader = ','
-" 开启语法高亮 true
-syntax on
+
+"代码折叠
+set foldenable
+" 折叠方法
+" manual    手工折叠
+" indent    使用缩进表示折叠
+" expr      使用表达式定义折叠
+" syntax    使用语法定义折叠
+" diff      对没有更改的文本进行折叠
+" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
+" zc      折叠
+" zC     对所在范围内所有嵌套的折叠点进行折叠
+" zo      展开折叠
+" zO     对所在范围内所有嵌套的折叠点展开
+" [z       到当前打开的折叠的开始处。
+" ]z       到当前打开的折叠的末尾处。
+" zj       向下移动。到达下一个折叠的开始处。关闭的折叠也被计入。
+" zk      向上移动到前一折叠的结束处。关闭的折叠也被计入。
+set foldmethod=indent
+set foldlevel=99
+" 代码折叠自定义快捷键
+let g:FoldMethod = 0
+map <leader>zz :call ToggleFold()<cr>
+fun! ToggleFold()
+    if g:FoldMethod == 0
+        exe "normal! zM"
+        let g:FoldMethod = 1
+    else
+        exe "normal! zR"
+        let g:FoldMethod = 0
+    endif
+endfun
 
 " 设置 ctags文件路径。 true
-"set tags=/home/trey/workspace/anjuke/tags
-
-"设置鼠标暂时不能用。 true
-set mouse-=a
+" set tags=/home/trey/workspace/anjuke/tags
+set tags=tags;
 
 " 突出显示当前行  true
 set cursorline
@@ -30,25 +58,34 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
 " 显示当前行号列号
 set ruler
 set showmode
 set scrolloff=7
 set nu!
+
 " 高亮搜索文本。 true
 set hlsearch
+
 " 搜索时忽略大小写 true
 set ignorecase
+
 " 增量搜索模式，即时搜索 true
 set incsearch
+
 " 设置tab长度
 set tabstop=4
+
 " 设置自动对齐空格数
 set shiftwidth=4
+
 "将Tab键自动转换成空格 真正需要Tab键时使用[Ctrl + V + Tab]
 set expandtab
+
 "设置按退格键时可以一次删除4个空格
 set softtabstop=4
+
 "设置按退格键时可以一次删除4个空格
 set smarttab
 
@@ -72,12 +109,18 @@ filetype plugin on
 "启动智能补全
 filetype plugin indent on
 
+"定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+nmap <Leader>qq :q!<CR>
+"定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+nmap <Leader>wq :wq<CR>
+
+
 "设置取消备份 禁止临时文件生成
 set nobackup
 set noswapfile
 
-"在状态栏显示正在输入的命令
-set showcmd
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 set t_ti= t_te=
 
@@ -172,9 +215,48 @@ let g:ctrlp_follow_symlinks=1
 
 Bundle 'vim-scripts/matchit.zip'
 
+" ========================== JavaScript =====================
+
+" Bundle 'pangloss/vim-javascript'
+" Bundle 'beautify-web/js-beautify'
+" Bundle 'marijnh/tern_for_vim'
+
 "补全插件
 Bundle 'Valloric/YouCompleteMe'
-"
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_goto_buffer_command = 'horizontal-split'
+
+" 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
+" old version
+if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+endif
+" new version
+if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+endif
+
+" 在下面这些文件中关闭 不启用。
+" let g:ycm_filetype_blacklist = {
+" \ 'tagbar' : 1,
+" \ 'qf' : 1,
+" \ 'notes' : 1,
+" \ 'markdown' : 1,
+" \ 'unite' : 1,
+" \ 'text' : 1,
+" \ 'vimwiki' : 1,
+" \ 'gitcommit' : 1,
+" \ 'php' : 1,
+" \}
+
+"let g:ycm_filetype_blacklist = {'*': 1}
+
+let g:ycm_filetype_whitelist = {}
+
 "Bundle 'shawncplus/phpcomplete.vim'
 
 "PHP
@@ -208,7 +290,7 @@ let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 
-"状态栏增强展示
+"=========================== 状态栏增强展示 =================================
 "新的airline配置
 Bundle 'bling/vim-airline'
 if !exists('g:airline_symbols')
@@ -239,21 +321,72 @@ hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold 
 hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
 hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
 hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
-
+let g:ctrlspace_default_mapping_key="<leader>b"
 "Vundle配置必须 开启插件
 filetype plugin indent on
 
 " theme 主题 设置。 true
 set t_Co=256
-"colorscheme molokai
-colorscheme solarized
-set background=dark
+" colorscheme molokai
+" let g:molokai_original=1
 
+set background=dark
+colorscheme solarized
+" colorscheme wells-colors
+" let g:solarized_contrast="normal"
+" let g:solarized_visibility="normal"
+" let g:solarized_termtrans=1
+
+" 自动补全配置
+"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+set completeopt=longest,menu
+
+" 增强模式中的命令行自动完成操作
+set wildmenu
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc,*.class
+
+" tab 操作
+" TODO: ctrl + n 变成切换tab的方法
+" http://vim.wikia.com/wiki/Alternative_tab_navigation
+"
+" http://stackoverflow.com/questions/2005214/switching-to-a-particular-tab-in-vim
+"map <C-2> 2gt
+map <leader>th :tabfirst<cr>
+map <leader>tl :tablast<cr>
+
+map <leader>tj :tabnext<cr>
+map <leader>tk :tabprev<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprev<cr>
+
+map <leader>te :tabedit<cr>
+map <leader>td :tabclose<cr>
+map <leader>tm :tabm<cr>
+
+" 新建tab  Ctrl+t
+nnoremap <leader>tt :tabnew<CR>
+" inoremap <C-t>     <Esc>:tabnew<CR>
+let g:last_active_tab = 1
+
+" 开启语法高亮 true
+syntax on
+syntax enable
+
+" 快捷切换当前路径
+nmap <leader><leader>g :lcd %:p:h<CR>
+"在状态栏显示正在输入的命令
+set showcmd
+"回车即选中当前项
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>""
+"设置鼠标暂时不能用。 true
+set mouse-=a
 "==========================================================
 "
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType js setlocal tabstop=2 shiftwidth=2 softtabstop=2
 "
 "=========================== end ==========================
 "
