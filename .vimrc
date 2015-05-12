@@ -272,7 +272,8 @@ let g:NERDSpaceDelims=1
 "vim shell vimshell
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell.vim'
-"let g:Powline_symbols='fancy'
+" let g:Powline_symbols='fancy'
+let g:vimshell_prompt='> '
 
 " 快速加入修改环绕字符
 Bundle 'tpope/vim-surround'
@@ -325,13 +326,16 @@ let g:ctrlspace_default_mapping_key="<leader>b"
 "Vundle配置必须 开启插件
 filetype plugin indent on
 
+syntax enable
 " theme 主题 设置。 true
 set t_Co=256
-" colorscheme molokai
+set background=dark
+let g:rehash256 = 1
+colorscheme molokai
+" colorscheme beekai
 " let g:molokai_original=1
 
-set background=dark
-colorscheme solarized
+" colorscheme solarized
 " colorscheme wells-colors
 " let g:solarized_contrast="normal"
 " let g:solarized_visibility="normal"
@@ -392,11 +396,20 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+
+" 下使用 shell命令。
+noremap <leader><leader>s :VimShellPop<cr>
+let g:vimshell_popup_height = 40
+let g:vimshell_enable_stay_insert = 1
+" let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+" let g:vimshell_prompt = 'fnamemodify(getcwd(), ":~")'
+" let g:vimshell_prompt = $USER."% "
+
 "==========================================================
 "
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType js setlocal tabstop=2 shiftwidth=2 softtabstop=2
-"
+" autocmd filetype vimshell inoremap <Esc> <S>
 "=========================== end ==========================
