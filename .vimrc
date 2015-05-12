@@ -1,8 +1,8 @@
 "===========================================================
 " Author : trey
-" Version : 0.3
+" Version : 0.2
 " Email : 164355949@qq.com
-" Last_modify : 2015-05-08
+" Last_modify : 2015-04-28
 "
 "===========================================================
 
@@ -130,7 +130,7 @@ set t_ti= t_te=
 set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
+" 插入模式下用绝对行号, 普通模式下用相对行号 便于普通模式下进行移动
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
@@ -142,7 +142,7 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-" F1 废弃这个键,防止调出系统帮助
+" F1 废弃这个键
 noremap <F1> <Esc>""
 
 "========================== Vundle 配置 ====================
@@ -215,7 +215,7 @@ let g:ctrlp_follow_symlinks=1
 
 Bundle 'vim-scripts/matchit.zip'
 
-" ========================== JavaScript =====================
+" ======================= JavaScript =====================
 
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'beautify-web/js-beautify'
@@ -381,6 +381,17 @@ set showcmd
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>""
 "设置鼠标暂时不能用。 true
 set mouse-=a
+" normal模式下切换到确切的tab
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 "==========================================================
 "
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
@@ -389,4 +400,3 @@ autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType js setlocal tabstop=2 shiftwidth=2 softtabstop=2
 "
 "=========================== end ==========================
-"
