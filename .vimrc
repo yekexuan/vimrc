@@ -273,7 +273,19 @@ let g:NERDSpaceDelims=1
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell.vim'
 " let g:Powline_symbols='fancy'
-let g:vimshell_prompt='> '
+let g:vimshell_prompt='>  '
+" vimshell 快捷键修改.
+" ctags 生成php 索引文件。生成路径在当前目录下。
+autocmd FileType vimshell
+            \ call vimshell#altercmd#define('tags', 'ctags -R --languages=php --langmap=php:+.phtml --php-kinds=+cidf --fields=+aiKSz --extra=+q')
+" 建立 别名命令 ll
+autocmd FileType vimshell
+            \ call vimshell#altercmd#define('ll', 'ls -l')
+" ｖｉ映射成　ｖｉｍ
+autocmd FileType vimshell
+            \ call vimshell#altercmd#define('vi', 'vim')
+" autocmd FileType vimshell
+            " \ call vimshell#altercmd#difine('', '')
 
 " 快速加入修改环绕字符
 Bundle 'tpope/vim-surround'
@@ -283,6 +295,7 @@ Bundle 'tpope/vim-repeat'
 " 快速去行尾空格 使用方法：  [, + <Space>]
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
+" F2 切换主题方案。
 map <F2> :colorscheme molokai<cr>
 
 "vim 主题
