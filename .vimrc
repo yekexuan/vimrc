@@ -1,8 +1,8 @@
 "===========================================================
 " Author : trey
-" Version : 0.2
+" Version : 0.3
 " Email : 164355949@qq.com
-" Last_modify : 2015-04-28
+" Last_modify : 2015-05-14
 "
 "===========================================================
 
@@ -281,9 +281,10 @@ autocmd FileType vimshell
 " 建立 别名命令 ll
 autocmd FileType vimshell
             \ call vimshell#altercmd#define('ll', 'ls -l')
-" ｖｉ映射成　ｖｉｍ
+" vi映射成vim　
 autocmd FileType vimshell
             \ call vimshell#altercmd#define('vi', 'vim')
+" map <Left> <Nop>
 " autocmd FileType vimshell
             " \ call vimshell#altercmd#difine('', '')
 
@@ -329,7 +330,13 @@ let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 let g:syntastic_html_checkers=['tidy', 'jshint']
 highlight SyntasticErrorSign guifg=white guibg=black
 
+" buffer 操作
 Bundle "szw/vim-ctrlspace"
+" buffer操作插件
+" 打开 , b   退出 q esc Q
+" v s 分屏打开
+" d 关闭选定buffer
+
 let g:airline_exclude_preview = 1
 hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
 hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
@@ -353,6 +360,10 @@ colorscheme molokai
 " let g:solarized_contrast="normal"
 " let g:solarized_visibility="normal"
 " let g:solarized_termtrans=1
+
+" git插件
+" Bundle "tpope/vim-fugitive"
+
 
 " 自动补全配置
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
@@ -416,8 +427,10 @@ let g:vimshell_popup_height = 40
 let g:vimshell_enable_stay_insert = 1
 " let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 " let g:vimshell_prompt = 'fnamemodify(getcwd(), ":~")'
-" let g:vimshell_prompt = $USER."% "
 
+" 正向搜索字符　: ,, f
+" 反向搜索字符串
+map <leader><leader>r <leader><leader>F
 "==========================================================
 "
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
