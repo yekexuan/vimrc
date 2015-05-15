@@ -141,9 +141,24 @@ function! NumberToggle()
     endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
-
+let colorflag=1
+function! ColorToggle()
+    " if $colorflag % 2
+    " if $colorflag == '1'
+        " :colorscheme molokai
+        " set colorflag=1
+        " :colorscheme solarized
+    " else
+        :colorscheme solarized
+        " set colorflag=2
+        " :colorscheme molokai
+    " endif
+endfunc
 " F1 废弃这个键
 noremap <F1> <Esc>""
+" F2 切换主题方案。
+" map <F2> :colorscheme molokai<cr>
+map <F2> :call ColorToggle()<cr>
 
 "========================== Vundle 配置 ====================
 
@@ -217,9 +232,9 @@ Bundle 'vim-scripts/matchit.zip'
 
 " ======================= JavaScript =====================
 
-" Bundle 'pangloss/vim-javascript'
-" Bundle 'beautify-web/js-beautify'
-" Bundle 'marijnh/tern_for_vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'beautify-web/js-beautify'
+Bundle 'marijnh/tern_for_vim'
 
 "补全插件
 Bundle 'Valloric/YouCompleteMe'
@@ -263,7 +278,8 @@ let g:ycm_filetype_whitelist = {}
 "自动补全
 Bundle 'StanAngeloff/php.vim'
 Bundle 'Shougo/unite.vim'
-Bundle 'm2mdas/phpcomplete-extended'
+" Bundle 'm2mdas/phpcomplete-extended'
+" phpcomplete_extended 打开composer项目是会出现创建索引提示。现在不使用。
 
 " 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -284,6 +300,9 @@ autocmd FileType vimshell
 " vi映射成vim　
 autocmd FileType vimshell
             \ call vimshell#altercmd#define('vi', 'vim')
+" 使用php 脚本生成文件
+autocmd FileType vimshell
+            \ call vimshell#altercmd#define('artisan', '/home/trey/shell/artisan.php')
 " map <Left> <Nop>
 " autocmd FileType vimshell
             " \ call vimshell#altercmd#difine('', '')
@@ -296,8 +315,6 @@ Bundle 'tpope/vim-repeat'
 " 快速去行尾空格 使用方法：  [, + <Space>]
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
-" F2 切换主题方案。
-map <F2> :colorscheme molokai<cr>
 
 "vim 主题
 Bundle 'altercation/vim-colors-solarized'
