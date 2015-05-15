@@ -450,6 +450,7 @@ let g:vimshell_enable_stay_insert = 1
 map <leader><leader>r <leader><leader>F
 "==========================================================
 "
+"
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
