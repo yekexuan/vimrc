@@ -143,16 +143,7 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 let colorflag=1
 function! ColorToggle()
-    " if $colorflag % 2
-    " if $colorflag == '1'
-        " :colorscheme molokai
-        " set colorflag=1
-        " :colorscheme solarized
-    " else
         :colorscheme solarized
-        " set colorflag=2
-        " :colorscheme molokai
-    " endif
 endfunc
 " F1 废弃这个键
 noremap <F1> <Esc>""
@@ -449,7 +440,6 @@ let g:vimshell_enable_stay_insert = 1
 " 反向搜索字符串
 map <leader><leader>r <leader><leader>F
 "==========================================================
-"
 "
 "autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
