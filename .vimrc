@@ -6,7 +6,6 @@
 "
 "===========================================================
 
-
 " ======================== trey 定制 =======================
 
 " 修改leader键
@@ -46,7 +45,6 @@ fun! ToggleFold()
 endfun
 
 " 设置 ctags文件路径。 true
-" set tags=/home/trey/workspace/anjuke/tags
 set tags=tags;
 
 " 突出显示当前行  true
@@ -269,8 +267,12 @@ let g:ycm_filetype_whitelist = {}
 "自动补全
 Bundle 'StanAngeloff/php.vim'
 Bundle 'Shougo/unite.vim'
+" Bundle 'shawncplus/php.vim'
 " Bundle 'm2mdas/phpcomplete-extended'
 " phpcomplete_extended 打开composer项目是会出现创建索引提示。现在不使用。
+"
+"Less高亮显示
+Bundle 'groenewege/vim-less'
 
 " 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -345,6 +347,9 @@ Bundle "szw/vim-ctrlspace"
 " v s 分屏打开
 " d 关闭选定buffer
 
+" git 插件.
+Bundle 'airblade/vim-gitgutter'
+
 let g:airline_exclude_preview = 1
 hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
 hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
@@ -353,6 +358,7 @@ hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=
 let g:ctrlspace_default_mapping_key="<leader>b"
 "Vundle配置必须 开启插件
 filetype plugin indent on
+
 
 syntax enable
 " theme 主题 设置。 true
