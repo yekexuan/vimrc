@@ -154,7 +154,7 @@ map <F2> :call ColorToggle()<cr>
 "开始使用Vundle的必须配置
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 "使用Vundle来管理Vundle
@@ -365,7 +365,7 @@ syntax enable
 set t_Co=256
 set background=dark
 let g:rehash256 = 1
-colorscheme molokai
+" colorscheme molokai
 " colorscheme beekai
 " let g:molokai_original=1
 
@@ -414,6 +414,9 @@ let g:last_active_tab = 1
 " 开启语法高亮 true
 syntax on
 syntax enable
+
+set nocompatible
+set hidden
 
 " 快捷切换当前路径
 nmap <leader><leader>g :lcd %:p:h<CR>
