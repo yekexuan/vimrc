@@ -13,3 +13,24 @@ vi
 BundleInstall
 
 ```
+
+
+依赖安装
+```
+# ubuntu
+sudo apt-get install ctags
+sudo apt-get install build-essential cmake python-dev  #编译YCM自动补全插件依赖
+sudo apt-get install silversearcher-ag
+
+# centos
+sudo yum install python-devel.x86_64
+sudo yum groupinstall 'Development Tools'
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install the_silver_searcher
+sudo yum install cmake
+
+# mac
+brew install ctags
+brew install the_silver_searcher
+
+```
